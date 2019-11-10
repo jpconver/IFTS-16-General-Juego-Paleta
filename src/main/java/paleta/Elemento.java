@@ -3,6 +3,7 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
+// Interfaz que implementan todos los elementos del juego
 public interface Elemento {
 
     public int getPosicionX();

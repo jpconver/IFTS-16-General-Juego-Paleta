@@ -3,6 +3,7 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
+// Implementacion de un enemigo donde se dibuja el enemigo como redondo
 public class EnemigoRedondo extends Enemigo {
 
     public EnemigoRedondo(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {

@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+// Clase para manejar cargar y tocar sonidos
 public class Sonidos {
 
     private Map<String, byte[]> sonidos;
@@ -20,6 +21,7 @@ public class Sonidos {
         this.sonidos = new HashMap<String, byte[]>();
     }
 
+    // agrega un sonido al mapa de sonidos
     public void agregarSonido(String nombre, String archivo) {
         try {
             byte[] fileContent = Files.readAllBytes(Paths.get(Sonidos.class.getClassLoader().getResource(archivo).getPath()));
@@ -29,6 +31,7 @@ public class Sonidos {
         }
     }
 
+    // toca un sonido del mapa de sonidos
     public void tocarSonido(String sonido) {
         try {
             byte[] sonidoEnBytes = sonidos.get(sonido);

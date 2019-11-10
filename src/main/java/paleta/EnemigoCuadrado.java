@@ -3,6 +3,7 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
+// Implementacion de un Enemigo donde el enemigo se dibuja como un cuadrado
 public class EnemigoCuadrado extends Enemigo {
 
     public EnemigoCuadrado(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {
