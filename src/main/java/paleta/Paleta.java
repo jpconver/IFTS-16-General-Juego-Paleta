@@ -3,7 +3,6 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
-// Implementacion de la paleta
 public class Paleta extends ElementoBasico {
 
     public Paleta(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {

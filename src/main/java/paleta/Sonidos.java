@@ -12,7 +12,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
-// Clase para manejar cargar y tocar sonidos
 public class Sonidos {
 
     private Map<String, byte[]> sonidos;

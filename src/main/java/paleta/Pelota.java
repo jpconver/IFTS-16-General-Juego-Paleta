@@ -3,7 +3,6 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
-// Implementacion de la pelota
 public class Pelota extends ElementoBasico {
 
     public Pelota(int posicionX, int posicionY, int velocidadX, int velocidadY, int ancho, int largo, Color color) {

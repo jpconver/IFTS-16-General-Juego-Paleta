@@ -3,7 +3,6 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
-// Clase abstract con implementaciones basicas de la interfaz elemento
 public abstract class ElementoBasico implements Elemento {
 
     private double posicionX;
@@ -26,7 +25,6 @@ public abstract class ElementoBasico implements Elemento {
 
     public abstract void dibujarse(Graphics graphics);
 
-    // devuelve true si hay colision entre este elemento y el elemento que le pasamos como parametro
     public boolean hayColision(Elemento elemento) {
         if (this.getPosicionX() < elemento.getPosicionX() + elemento.getAncho() &&
             this.getPosicionX() + this.getAncho() > elemento.getPosicionX() &&

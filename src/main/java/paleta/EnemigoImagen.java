@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
-// Implementacion de un enemigo donde se dibuja el enemigo como una imagen
 public class EnemigoImagen extends Enemigo {
     
     private BufferedImage img;

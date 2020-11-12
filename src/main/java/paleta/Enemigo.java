@@ -3,7 +3,6 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
-// Clase abstracta para enemigo, implementa ElementoBasico
 public abstract class Enemigo extends ElementoBasico {
 
     public Enemigo(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {

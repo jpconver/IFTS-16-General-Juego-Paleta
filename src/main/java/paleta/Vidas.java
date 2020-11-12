@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-// Clase para mostrar la cantidad de vidas que le quedan al usuario
 public class Vidas {
 
     private int posicionX;
