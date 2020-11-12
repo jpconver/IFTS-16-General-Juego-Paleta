@@ -26,13 +26,19 @@ public abstract class ElementoBasico implements Elemento {
     public abstract void dibujarse(Graphics graphics);
 
     public boolean hayColision(Elemento elemento) {
-        if (this.getPosicionX() < elemento.getPosicionX() + elemento.getAncho() &&
-            this.getPosicionX() + this.getAncho() > elemento.getPosicionX() &&
-            this.getPosicionY() < elemento.getPosicionY() + elemento.getLargo() &&
-            this.getLargo() + this.getPosicionY() > elemento.getPosicionY()) {
-            return true;
+        if (Utilidades.hayColision(
+            this.getPosicionX(),
+            this.getPosicionY(),
+            this.getAncho(),
+            this.getLargo(),
+            elemento.getPosicionX(),
+            elemento.getPosicionY(),
+            elemento.getAncho(),
+            elemento.getLargo())) {
+                return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public void moverse() {
