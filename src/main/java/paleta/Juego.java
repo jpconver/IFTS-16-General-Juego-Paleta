@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 // Implemento KeyListener para poder leer en los metods keyPressed y keyReleased los codigos de tecla que apreto el usuario
 // Implemento Runnable para crear un Threads que ejecute en paralelo con mi programa
@@ -71,7 +71,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             paleta.setVelocidadX(1);
         }
 
-        // si mantengo apretada la tecla de la izquierda se asigna velocidad -1 a la paleta
+        // si mantengo apretada la tecla de la izquierda se asigna velocidad -1 a la
+        // paleta
         if (arg0.getKeyCode() == 37) {
             paleta.setVelocidadX(-1);
         }
@@ -92,11 +93,13 @@ public class Juego extends JPanel implements KeyListener, Runnable {
 
     @Override
     // Este metodo se llama cuando se hace un this.repaint() automaticamente
-    // Aca se dibujan a todos los elementos, para ello cada elemento implementa el metodo dibujarse
+    // Aca se dibujan a todos los elementos, para ello cada elemento implementa el
+    // metodo dibujarse
     protected void paintComponent(Graphics g) {
         if (juegoCorriendo) {
             limpiarPantalla(g);
-            // si el juego no esta parado entonces dibujar todos los elementos y los enemigos
+            // si el juego no esta parado entonces dibujar todos los elementos y los
+            // enemigos
             if (!pararJuego) {
                 paleta.dibujarse(g);
                 puntaje.dibujarse(g);
@@ -104,7 +107,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
                 pelota.dibujarse(g);
                 dibujarEnemigos(g);
             } else {
-                // si el juego esta parado entonces dibujar el fin del juego y cambiar el atributo juegoCorriendo a false
+                // si el juego esta parado entonces dibujar el fin del juego y cambiar el
+                // atributo juegoCorriendo a false
                 dibujarFinJuego(g);
                 juegoCorriendo = false;
             }
@@ -156,22 +160,26 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         mostrarMensaje(g, "Fin del juego, puntaje: " + String.valueOf(puntaje.getPuntaje()));
     }
 
-    // se hace una iteracion de todos los enemigos cargados en la lista de enemigos y se le dice a cada uno que ejecute el metodo moverse(). 
-    // moverse() actualiza la posicionX y posicionY del elemento en base a la direccion que tenia para X e Y
+    // se hace una iteracion de todos los enemigos cargados en la lista de enemigos
+    // y se le dice a cada uno que ejecute el metodo moverse().
+    // moverse() actualiza la posicionX y posicionY del elemento en base a la
+    // direccion que tenia para X e Y
     private void moverEnemigos() {
         for (Enemigo enemigo : enemigos) {
             enemigo.moverse();
         }
     }
 
-    // se hace una iteracion en la lista de enemigos y se ejecuta el metodo dibujarse()
+    // se hace una iteracion en la lista de enemigos y se ejecuta el metodo
+    // dibujarse()
     private void dibujarEnemigos(Graphics g) {
         for (Enemigo enemigo : enemigos) {
             enemigo.dibujarse(g);
         }
     }
 
-    // En este metodo verifico las colisiones, los rebotes de la pelota contra las paredes, la colision entre enemigos y el fin de juego
+    // En este metodo verifico las colisiones, los rebotes de la pelota contra las
+    // paredes, la colision entre enemigos y el fin de juego
     private void verificarEstadoAmbiente() {
         verificarReboteEntrePelotaYPaleta();
         verificarSiPelotaTocaElPiso();
@@ -183,8 +191,9 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         verificarFinDeJuego();
     }
 
-    // se iteran todos los enemigos y se verifica para cada enemigo si hay colision con cada enemigo. Si hay colision se ejecuta el metodo rebotarEnEjeX() del enemigo
-    // esto hace que el enemigo cambie de direccion en el eje x
+    // se iteran todos los enemigos y se verifica para cada enemigo si hay colision
+    // con cada enemigo. Si hay colision se ejecuta el metodo rebotarEnEjeX() del
+    // enemigo esto hace que el enemigo cambie de direccion en el eje x
     private void verificarReboteEntreEnemigos() {
         for (Enemigo enemigo1 : enemigos) {
             for (Enemigo enemigo2 : enemigos) {
@@ -195,7 +204,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si hay colision entre la paleta y la pelota. Si hay colision se cambia la direccion de la pelota en el eje Y
+    // se verifica si hay colision entre la paleta y la pelota. Si hay colision se
+    // cambia la direccion de la pelota en el eje Y
     private void verificarReboteEntrePelotaYPaleta() {
         if (paleta.hayColision(pelota)) {
             pelota.rebotarEnEjeY();
@@ -203,7 +213,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si hay colision de cada enemigo contra las paredes laterales, si hay colision se cambia la direccion del enemigo en el eje X
+    // se verifica si hay colision de cada enemigo contra las paredes laterales, si
+    // hay colision se cambia la direccion del enemigo en el eje X
     private void verificarReboteEnemigosContraParedesLaterales() {
         for (Enemigo enemigo : enemigos) {
             if (enemigo.getPosicionX() <= 0 || enemigo.getPosicionX() + enemigo.getAncho() >= anchoJuego) {
@@ -212,7 +223,9 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la pelota colisiona con cada uno de los enemigos. Si hay colision se hace rebotar la pelota en el ejeY, se suma un punto y se toca el sonido toc
+    // se verifica si la pelota colisiona con cada uno de los enemigos. Si hay
+    // colision se hace rebotar la pelota en el ejeY, se suma un punto y se toca el
+    // sonido toc
     private void verificarColisionEntreEnemigoYPelota() {
         Iterator<Enemigo> iterador = enemigos.iterator();
         while (iterador.hasNext()) {
@@ -226,7 +239,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la cantidad de enemigos es 0 o si la cantidad de vidas es 0 para parar el juego
+    // se verifica si la cantidad de enemigos es 0 o si la cantidad de vidas es 0
+    // para parar el juego
     private void verificarFinDeJuego() {
         if (enemigos.size() == 0) {
             pararJuego = true;
@@ -236,7 +250,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la pelota toca el piso, si es hace se pierde una vida, se crea una nueva pelota, se toca el sonido muerte y se muesra
+    // se verifica si la pelota toca el piso, si es hace se pierde una vida, se crea
+    // una nueva pelota, se toca el sonido muerte y se muesra
     // el mensaje perdiste una vida y se esperan 5 segundos
     private void verificarSiPelotaTocaElPiso() {
         if (pelota.getPosicionY() + pelota.getLargo() >= largoJuego) {
@@ -248,14 +263,16 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la pelota colisiona contra la pared lateral, si es asi, se hace rebotar la pelota en el eje X
+    // se verifica si la pelota colisiona contra la pared lateral, si es asi, se
+    // hace rebotar la pelota en el eje X
     private void verificarRebotePelotaContraParedLateral() {
         if (pelota.getPosicionX() <= 0 || pelota.getPosicionX() + pelota.getAncho() >= anchoJuego) {
             pelota.rebotarEnEjeX();
         }
     }
 
-    // se verifica si la pelota colisiona contra la pared superior, si es asi se hace rebotar la pelota en el eje Y
+    // se verifica si la pelota colisiona contra la pared superior, si es asi se
+    // hace rebotar la pelota en el eje Y
     private void verificarRebotePelotaContraLaParedSuperior() {
         if (pelota.getPosicionY() <= 0) {
             pelota.rebotarEnEjeY();
