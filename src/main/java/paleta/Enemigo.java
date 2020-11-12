@@ -9,7 +9,6 @@ public abstract class Enemigo extends ElementoBasico {
         super(posicionX, posicionY, velocidadX, velocidadY, ancho, largo, color);
     }
 
-    // Todos los enemigos deben implementar el metodo destruirse
     public abstract void destruirse(Graphics graphics);
 
 }
