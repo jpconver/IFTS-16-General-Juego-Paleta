@@ -20,7 +20,6 @@ public class Sonidos {
         this.sonidos = new HashMap<String, byte[]>();
     }
 
-    // agrega un sonido al mapa de sonidos
     public void agregarSonido(String nombre, String archivo) {
         try {
             byte[] fileContent = Files
@@ -31,7 +30,6 @@ public class Sonidos {
         }
     }
 
-    // toca un sonido del mapa de sonidos
     public void tocarSonido(String sonido) {
         try {
             byte[] sonidoEnBytes = sonidos.get(sonido);

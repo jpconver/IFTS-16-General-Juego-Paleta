@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-// Implementacion del puntaje del juego
 public class Puntaje {
 
     private int posicionX;
