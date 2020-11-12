@@ -12,8 +12,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-// Implemento KeyListener para poder leer en los metods keyPressed y keyReleased los codigos de tecla que apreto el usuario
-// Implemento Runnable para crear un Threads que ejecute en paralelo con mi programa
+// Implemento KeyListener para poder leer en los metodos keyPressed y keyReleased los codigos de tecla que apreto el usuario
+// Implemento Runnable para crear un Thread que ejecute en paralelo con mi programa
 public class Juego extends JPanel implements KeyListener, Runnable {
 
     private static final long serialVersionUID = 1L;
@@ -50,9 +50,10 @@ public class Juego extends JPanel implements KeyListener, Runnable {
 
     /*
      * Actualizar la actualizacion y el dibujado del juego de esta forma no es
-     * recomendable dado que tendra distintas velocidades en distinto hardware Se
-     * hizo asi por simplicidad para facilitar el aprendizaje Lo recomendado es
-     * separar la parte de dibujado de la de actualizacion y usar interpolation
+     * recomendable dado que tendra distintas velocidades en distinto hardware. Se
+     * hizo asi por simplicidad para facilitar el aprendizaje dado que lo
+     * recomendado es separar la parte de dibujado de la de actualizacion y usar
+     * interpolation
      */
     @Override
     public void run() {
@@ -170,7 +171,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se hace una iteracion en la lista de enemigos y se ejecuta el metodo
+    // Se hace una iteracion en la lista de enemigos y se ejecuta el metodo
     // dibujarse()
     private void dibujarEnemigos(Graphics g) {
         for (Enemigo enemigo : enemigos) {
@@ -191,9 +192,9 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         verificarFinDeJuego();
     }
 
-    // se iteran todos los enemigos y se verifica para cada enemigo si hay colision
+    // Se iteran todos los enemigos y se verifica para cada enemigo si hay colision
     // con cada enemigo. Si hay colision se ejecuta el metodo rebotarEnEjeX() del
-    // enemigo esto hace que el enemigo cambie de direccion en el eje x
+    // enemigo esto hace que el enemigo cambie de direccion en el eje X
     private void verificarReboteEntreEnemigos() {
         for (Enemigo enemigo1 : enemigos) {
             for (Enemigo enemigo2 : enemigos) {
@@ -239,7 +240,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la cantidad de enemigos es 0 o si la cantidad de vidas es 0
+    // Se verifica si la cantidad de enemigos es 0 o si la cantidad de vidas es 0
     // para parar el juego
     private void verificarFinDeJuego() {
         if (enemigos.size() == 0) {
@@ -250,7 +251,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // se verifica si la pelota toca el piso, si es hace se pierde una vida, se crea
+    // Se verifica si la pelota toca el piso, si es asi se pierde una vida, se crea
     // una nueva pelota, se toca el sonido muerte y se muesra
     // el mensaje perdiste una vida y se esperan 5 segundos
     private void verificarSiPelotaTocaElPiso() {
