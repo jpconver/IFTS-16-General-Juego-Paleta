@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 
 // Implemento KeyListener para poder leer en los metods keyPressed y keyReleased los codigos de tecla que apreto el usuario
 // Implemento Runnable para crear un Threads que ejecute en paralelo con mi programa
-public class Juego extends JComponent implements KeyListener, Runnable {
+public class Juego extends JPanel implements KeyListener, Runnable {
 
     private static final long serialVersionUID = 1L;
     private int anchoJuego;
