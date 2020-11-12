@@ -10,12 +10,14 @@ import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 
 public class EnemigoImagen extends Enemigo {
-    
+
     private BufferedImage img;
 
-    public EnemigoImagen(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {
+    public EnemigoImagen(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo,
+            Color color) {
         super(posicionX, posicionY, velocidadX, velocidadY, ancho, largo, color);
-        String path = Paths.get(Sonidos.class.getClassLoader().getResource("imagenes/android.png").getPath()).toString();
+        String path = Paths.get(Sonidos.class.getClassLoader().getResource("imagenes/android.png").getPath())
+                .toString();
         try {
             this.img = ImageIO.read(new File(path));
         } catch (IOException e) {

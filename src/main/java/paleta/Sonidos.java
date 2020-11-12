@@ -23,7 +23,8 @@ public class Sonidos {
     // agrega un sonido al mapa de sonidos
     public void agregarSonido(String nombre, String archivo) {
         try {
-            byte[] fileContent = Files.readAllBytes(Paths.get(Sonidos.class.getClassLoader().getResource(archivo).toURI()));
+            byte[] fileContent = Files
+                    .readAllBytes(Paths.get(Sonidos.class.getClassLoader().getResource(archivo).toURI()));
             sonidos.put(nombre, fileContent);
         } catch (Exception e) {
             e.printStackTrace();

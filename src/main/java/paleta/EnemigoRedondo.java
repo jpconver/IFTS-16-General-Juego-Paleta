@@ -5,7 +5,8 @@ import java.awt.Graphics;
 
 public class EnemigoRedondo extends Enemigo {
 
-    public EnemigoRedondo(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {
+    public EnemigoRedondo(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo,
+            Color color) {
         super(posicionX, posicionY, velocidadX, velocidadY, ancho, largo, color);
     }
 

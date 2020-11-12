@@ -5,7 +5,8 @@ import java.awt.Graphics;
 
 public class EnemigoCuadrado extends Enemigo {
 
-    public EnemigoCuadrado(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo, Color color) {
+    public EnemigoCuadrado(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo,
+            Color color) {
         super(posicionX, posicionY, velocidadX, velocidadY, ancho, largo, color);
     }
 
