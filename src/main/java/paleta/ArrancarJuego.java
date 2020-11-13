@@ -13,6 +13,7 @@ public class ArrancarJuego {
         int tiempoDeEsperaEntreActualizaciones = 5;
         int enemigosPorLinea = 10;
         int filasDeEnemigos = 6;
+        int vidas = 3;
 
         // Activar aceleracion de graficos en 2 dimensiones
         System.setProperty("sun.java2d.opengl", "true");
@@ -31,7 +32,7 @@ public class ArrancarJuego {
 
         // Crear un "JComponent" llamado Juego y agregarlo a la ventana
         Juego juego = new Juego(anchoVentana, largoVentana, tiempoDeEsperaEntreActualizaciones, enemigosPorLinea,
-                filasDeEnemigos, 1);
+                filasDeEnemigos, vidas);
 
         // Agregar a la ventana el JComponent (Juego hereda de JComponent)
         ventana.add(juego);
