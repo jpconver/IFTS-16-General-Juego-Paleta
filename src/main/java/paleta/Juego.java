@@ -185,7 +185,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             sonidos.agregarSonido("toc", "sonidos/toc.wav");
             sonidos.agregarSonido("tic", "sonidos/tic.wav");
             sonidos.agregarSonido("muerte", "sonidos/muerte.wav");
-            sonidos.agregarSonido("background", "sonidos/background2.wav");
+            sonidos.agregarSonido("background", "sonidos/background.wav");
         } catch (Exception e1) {
             throw new RuntimeException(e1);
         }
