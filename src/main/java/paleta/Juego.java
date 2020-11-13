@@ -16,6 +16,12 @@ import javax.swing.JPanel;
 // Implemento Runnable para crear un Thread que ejecute en paralelo con mi programa
 public class Juego extends JPanel implements KeyListener, Runnable {
 
+    private final static int PANTALLA_INICIO = 1;
+    private final static int PANTALLA_JUEGO = 2;
+    private final static int PANTALLA_PERDEDOR = 3;
+    private final static int PANTALLA_GANADOR = 4;
+    private final static int CODIGO_TECLA_DERECHA = 39;
+    private final static int CODIGO_TECLA_IZQUIERDA = 37;
     private static final long serialVersionUID = 1L;
     private int anchoJuego;
     private int largoJuego;
