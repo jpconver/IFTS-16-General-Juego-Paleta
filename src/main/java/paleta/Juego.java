@@ -305,6 +305,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private void verificarRebotePelotaContraParedLateral() {
         if (pelota.getPosicionX() <= 0 || pelota.getPosicionX() + pelota.getAncho() >= anchoJuego) {
             pelota.rebotarEnEjeX();
+            sonidos.tocarSonido("toc");
         }
     }
 
@@ -313,6 +314,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private void verificarRebotePelotaContraLaParedSuperior() {
         if (pelota.getPosicionY() <= 0) {
             pelota.rebotarEnEjeY();
+            sonidos.tocarSonido("toc");
         }
     }
 
