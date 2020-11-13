@@ -30,7 +30,15 @@ public class Sonidos {
         }
     }
 
+    public void repetirSonido(String sonido) {
+        tocarSonido(sonido, true);
+    }
+
     public void tocarSonido(String sonido) {
+        tocarSonido(sonido, false);
+    }
+
+    private void tocarSonido(String sonido, boolean repetir) {
         try {
             byte[] sonidoEnBytes = sonidos.get(sonido);
             InputStream myInputStream = new ByteArrayInputStream(sonidoEnBytes);
@@ -38,7 +46,11 @@ public class Sonidos {
             DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(ais);
-            clip.start();
+            if (repetir) {
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            } else {
+                clip.start();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -59,6 +59,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         this.pantallaGanador = new PantallaImagen(anchoJuego, largoJuego, "imagenes/ganaste.png");
         this.pantallaEsperar = new PantallaImagen(anchoJuego, largoJuego, "imagenes/esperar.png");
         cargarSonidos();
+        this.sonidos.repetirSonido("background");
         inicializarJuego();
     }
 
@@ -184,6 +185,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             sonidos.agregarSonido("toc", "sonidos/toc.wav");
             sonidos.agregarSonido("tic", "sonidos/tic.wav");
             sonidos.agregarSonido("muerte", "sonidos/muerte.wav");
+            sonidos.agregarSonido("background", "sonidos/background2.wav");
         } catch (Exception e1) {
             throw new RuntimeException(e1);
         }
