@@ -3,7 +3,7 @@ package paleta;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public interface Elemento {
+public interface Elemento extends Dibujable {
 
     public int getPosicionX();
 
