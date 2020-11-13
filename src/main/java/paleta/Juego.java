@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -31,24 +32,40 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private Puntaje puntaje;
     private Vidas vidas;
     private List<Enemigo> enemigos;
-    private boolean pararJuego;
-    private boolean juegoCorriendo;
     private Sonidos sonidos;
+    private int pantallaActual;
+    private int enemigosPorLinea;
+    private int filasDeEnemigos;
+    private int cantidadVidas;
+    private PantallaImagen portada;
+    private PantallaImagen pantallaGanador;
+    private PantallaImagen pantallaEsperar;
 
-    public Juego(int anchoJuego, int largoJuego, int tiempoDeEsperaEntreActualizaciones) {
     public Juego(int anchoJuego, int largoJuego, int tiempoDeEsperaEntreActualizaciones, int enemigosPorLinea,
             int filasDeEnemigos, int vidas) {
+        this.pantallaActual = PANTALLA_INICIO;
         this.anchoJuego = anchoJuego;
         this.largoJuego = largoJuego;
         this.pelota = createPelota();
         this.paleta = new Paleta(30, largoJuego - 20, 0, 0, 80, 20, Color.black);
-        this.puntaje = new Puntaje(10, 20, new Font("Arial", 8, 20), Color.blue);
         this.enemigos = new ArrayList<Enemigo>();
-        this.vidas = new Vidas(10, 45, new Font("Arial", 8, 20), Color.blue, 3);
-        this.juegoCorriendo = false;
-        this.pararJuego = false;
+        this.vidas = new Vidas(10, 45, new Font("Arial", 8, 20), Color.blue, vidas);
         this.tiempoDeEsperaEntreActualizaciones = tiempoDeEsperaEntreActualizaciones;
+        this.enemigosPorLinea = enemigosPorLinea;
+        this.filasDeEnemigos = filasDeEnemigos;
+        this.cantidadVidas = vidas;
+        this.portada = new PantallaImagen(anchoJuego, largoJuego, "imagenes/portada.png");
+        this.pantallaGanador = new PantallaImagen(anchoJuego, largoJuego, "imagenes/ganaste.png");
+        this.pantallaEsperar = new PantallaImagen(anchoJuego, largoJuego, "imagenes/esperar.png");
         cargarSonidos();
+        inicializarJuego();
+    }
+
+    private void inicializarJuego() {
+        enemigos.clear();
+        this.vidas = new Vidas(10, 45, new Font("Arial", 8, 20), Color.blue, cantidadVidas);
+        this.puntaje = new Puntaje(10, 20, new Font("Arial", 8, 20), Color.blue);
+        agregarEnemigos(enemigosPorLinea, filasDeEnemigos);
     }
 
     @Override
@@ -65,9 +82,10 @@ public class Juego extends JPanel implements KeyListener, Runnable {
      */
     @Override
     public void run() {
-        juegoCorriendo = true;
-        while (juegoCorriendo) {
-            actualizarJuego();
+        while (true) {
+            if (pantallaActual == PANTALLA_JUEGO) {
+                actualizarJuego();
+            }
             dibujarJuego();
             esperar(tiempoDeEsperaEntreActualizaciones);
         }
@@ -75,14 +93,24 @@ public class Juego extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyPressed(KeyEvent arg0) {
+
+        if (pantallaActual == PANTALLA_INICIO) {
+            inicializarJuego();
+            pantallaActual = PANTALLA_JUEGO;
+        }
+
+        if (pantallaActual == PANTALLA_PERDEDOR || pantallaActual == PANTALLA_GANADOR) {
+            pantallaActual = PANTALLA_INICIO;
+        }
+
         // si mantengo apretada la tecla de la derecha se asigna velocidad 1 a la paleta
-        if (arg0.getKeyCode() == 39) {
+        if (arg0.getKeyCode() == CODIGO_TECLA_DERECHA) {
             paleta.setVelocidadX(1);
         }
 
         // si mantengo apretada la tecla de la izquierda se asigna velocidad -1 a la
         // paleta
-        if (arg0.getKeyCode() == 37) {
+        if (arg0.getKeyCode() == CODIGO_TECLA_IZQUIERDA) {
             paleta.setVelocidadX(-1);
         }
     }
@@ -90,7 +118,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     @Override
     public void keyReleased(KeyEvent arg0) {
         // si suelto la tecla 39 o la 37 se asigna velocidad 0 a la paleta
-        if (arg0.getKeyCode() == 39 || arg0.getKeyCode() == 37) {
+        if (arg0.getKeyCode() == CODIGO_TECLA_DERECHA || arg0.getKeyCode() == CODIGO_TECLA_IZQUIERDA) {
             paleta.setVelocidadX(0);
         }
     }
@@ -105,22 +133,23 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     // Aca se dibujan a todos los elementos, para ello cada elemento implementa el
     // metodo dibujarse
     protected void paintComponent(Graphics g) {
-        if (juegoCorriendo) {
-            limpiarPantalla(g);
-            // si el juego no esta parado entonces dibujar todos los elementos y los
-            // enemigos
-            if (!pararJuego) {
-                paleta.dibujarse(g);
-                puntaje.dibujarse(g);
-                vidas.dibujarse(g);
-                pelota.dibujarse(g);
-                dibujarEnemigos(g);
-            } else {
-                // si el juego esta parado entonces dibujar el fin del juego y cambiar el
-                // atributo juegoCorriendo a false
-                dibujarFinJuego(g);
-                juegoCorriendo = false;
-            }
+        this.limpiarPantalla(g);
+        if (pantallaActual == PANTALLA_INICIO) {
+            dibujarInicioJuego(g);
+        }
+        if (pantallaActual == PANTALLA_PERDEDOR) {
+            new PantallaPerdedor(anchoJuego, largoJuego, "imagenes/perdiste.png", this.puntaje.getPuntaje())
+                .dibujarse(g);
+        }
+        if (pantallaActual == PANTALLA_GANADOR) {
+            pantallaGanador.dibujarse(g);
+        }
+        if (pantallaActual == PANTALLA_JUEGO) {
+            paleta.dibujarse(g);
+            puntaje.dibujarse(g);
+            vidas.dibujarse(g);
+            pelota.dibujarse(g);
+            dibujarEnemigos(g);
         }
     }
 
@@ -156,17 +185,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    // Este metodo se usa para mostrar un mensaje
-    private void mostrarMensaje(Graphics g, String mensaje) {
-        this.limpiarPantalla(g);
-        g.setColor(Color.blue);
-        g.setFont(new Font("Arial", 8, 30));
-        g.drawString(mensaje, 10, 40);
-    }
-
-    // dibujar el fin del juego
-    private void dibujarFinJuego(Graphics g) {
-        mostrarMensaje(g, "Fin del juego, puntaje: " + String.valueOf(puntaje.getPuntaje()));
+    private void dibujarInicioJuego(Graphics g) {
+        portada.dibujarse(g);
     }
 
     // se hace una iteracion de todos los enemigos cargados en la lista de enemigos
@@ -251,11 +271,13 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     // Se verifica si la cantidad de enemigos es 0 o si la cantidad de vidas es 0
     // para parar el juego
     private void verificarFinDeJuego() {
-        if (enemigos.size() == 0) {
-            pararJuego = true;
-        }
+
         if (vidas.getVidas() == 0) {
-            pararJuego = true;
+            pantallaActual = PANTALLA_PERDEDOR;
+        }
+
+        if (enemigos.size() == 0) {
+            pantallaActual = PANTALLA_GANADOR;
         }
     }
 
@@ -267,7 +289,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             vidas.perderVida();
             pelota = createPelota();
             sonidos.tocarSonido("muerte");
-            mostrarMensaje(this.getGraphics(), "Perdiste una vida!, espera 5 segundos");
+            pantallaEsperar.dibujarse(this.getGraphics());
             esperar(5000);
         }
     }
