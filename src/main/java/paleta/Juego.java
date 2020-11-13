@@ -297,4 +297,24 @@ public class Juego extends JPanel implements KeyListener, Runnable {
         }
     }
 
+    private void agregarEnemigos(int enemigosPorLinea, int filasDeEnemigos) {
+        for (int x = 1; x < enemigosPorLinea; x++) {
+            for (int y = 1; y < filasDeEnemigos; y++) {
+                Color color = new Color(new Random().nextInt(255), new Random().nextInt(255),
+                        new Random().nextInt(255));
+                // Si x es multiplo de 2 agrega un enemigo redondo
+                if (x % 2 == 0) {
+                    agregarEnemigo(new EnemigoRedondo(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
+                    // si x es multiplo de 3 agrega un enemigo cuadrado
+                } else if (x % 3 == 0) {
+                    agregarEnemigo(new EnemigoCuadrado(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
+                    // de lo contrario se agrega un enemigo imagen
+                } else {
+                    agregarEnemigo(new EnemigoImagen(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
+                }
+
+            }
+        }
+    }
+
 }
