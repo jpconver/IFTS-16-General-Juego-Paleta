@@ -40,6 +40,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private PantallaImagen portada;
     private PantallaImagen pantallaGanador;
     private PantallaImagen pantallaEsperar;
+    private PantallaPerdedor pantallaPerdedor;
 
     public Juego(int anchoJuego, int largoJuego, int tiempoDeEsperaEntreActualizaciones, int enemigosPorLinea,
             int filasDeEnemigos, int vidas) {
@@ -62,7 +63,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     }
 
     private void inicializarJuego() {
-        enemigos.clear();
+        this.enemigos.clear();
+        this.pantallaPerdedor = null;
         this.vidas = new Vidas(10, 45, new Font("Arial", 8, 20), Color.blue, cantidadVidas);
         this.puntaje = new Puntaje(10, 20, new Font("Arial", 8, 20), Color.blue);
         agregarEnemigos(enemigosPorLinea, filasDeEnemigos);
@@ -138,8 +140,10 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             dibujarInicioJuego(g);
         }
         if (pantallaActual == PANTALLA_PERDEDOR) {
-            new PantallaPerdedor(anchoJuego, largoJuego, "imagenes/perdiste.png", this.puntaje.getPuntaje())
-                .dibujarse(g);
+            if (this.pantallaPerdedor == null) {
+                this.pantallaPerdedor = new PantallaPerdedor(anchoJuego, largoJuego, "imagenes/perdiste.png", this.puntaje.getPuntaje());
+            }
+            pantallaPerdedor.dibujarse(g);
         }
         if (pantallaActual == PANTALLA_GANADOR) {
             pantallaGanador.dibujarse(g);
