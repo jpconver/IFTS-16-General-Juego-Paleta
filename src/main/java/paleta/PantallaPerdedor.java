@@ -15,7 +15,11 @@ public class PantallaPerdedor extends PantallaImagen {
 
     public void dibujarse(Graphics graphics) {
         super.dibujarse(graphics);
-        mostrarMensaje(graphics, "Obtuviste: " + puntos + " punto/s");
+        String mensajePuntos = " punto";
+        if (puntos >= 1) {
+            mensajePuntos += "s";
+        }
+        mostrarMensaje(graphics, "Obtuviste: " + puntos + mensajePuntos);
     }
 
     private void mostrarMensaje(Graphics g, String mensaje) {
