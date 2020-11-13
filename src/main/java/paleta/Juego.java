@@ -30,6 +30,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private Sonidos sonidos;
 
     public Juego(int anchoJuego, int largoJuego, int tiempoDeEsperaEntreActualizaciones) {
+    public Juego(int anchoJuego, int largoJuego, int tiempoDeEsperaEntreActualizaciones, int enemigosPorLinea,
+            int filasDeEnemigos, int vidas) {
         this.anchoJuego = anchoJuego;
         this.largoJuego = largoJuego;
         this.pelota = createPelota();

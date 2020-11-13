@@ -1,8 +1,5 @@
 package paleta;
 
-import java.awt.Color;
-import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -33,7 +30,8 @@ public class ArrancarJuego {
         ventana.setVisible(true);
 
         // Crear un "JComponent" llamado Juego y agregarlo a la ventana
-        Juego juego = new Juego(anchoVentana, largoVentana, tiempoDeEsperaEntreActualizaciones);
+        Juego juego = new Juego(anchoVentana, largoVentana, tiempoDeEsperaEntreActualizaciones, enemigosPorLinea,
+                filasDeEnemigos, 1);
 
         // Agregar a la ventana el JComponent (Juego hereda de JComponent)
         ventana.add(juego);
@@ -45,9 +43,6 @@ public class ArrancarJuego {
         // Achicar la ventana lo maximo posible para que entren los componentes
         ventana.pack();
 
-        // Agregar enemigos al juego
-        agregarEnemigos(juego, enemigosPorLinea, filasDeEnemigos);
-
         // Crear un thread y pasarle como parametro al juego que implementa la interfaz
         // "Runnable"
         Thread thread = new Thread(juego);
@@ -55,25 +50,6 @@ public class ArrancarJuego {
         // Arrancar el juego
         thread.start();
 
-    }
-
-    private static void agregarEnemigos(Juego juego, int enemigosPorLinea, int filasDeEnemigos) {
-        for (int x = 1; x < enemigosPorLinea; x++) {
-            for (int y = 1; y < filasDeEnemigos; y++) {
-                Color color = new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255));
-                // Si x es multiplo de 2 agrega un enemigo redondo
-                if (x % 2 == 0) {
-                    juego.agregarEnemigo(new EnemigoRedondo(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
-                    // si x es multiplo de 3 agrega un enemigo cuadrado
-                } else if (x % 3 == 0) {
-                    juego.agregarEnemigo(new EnemigoCuadrado(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
-                    // de lo contrario se agrega un enemigo imagen
-                } else {
-                    juego.agregarEnemigo(new EnemigoImagen(50 + x * 60, 60 + y * 30, 0.5, 0, 20, 20, color));
-                }
-
-            }
-        }
     }
 
 }
