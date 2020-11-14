@@ -30,7 +30,7 @@ public class ArrancarJuego {
         // Mostrar la ventana
         ventana.setVisible(true);
 
-        // Crear un "JComponent" llamado Juego y agregarlo a la ventana
+        // Crear un "Jpanel" llamado Juego y agregarlo a la ventana
         Juego juego = new Juego(anchoVentana, largoVentana, tiempoDeEsperaEntreActualizaciones, enemigosPorLinea,
                 filasDeEnemigos, vidas);
 
