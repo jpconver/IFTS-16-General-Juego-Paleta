@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Puntaje {
+public class Puntaje implements Dibujable {
 
     private int posicionX;
     private int posicionY;
