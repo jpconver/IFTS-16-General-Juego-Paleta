@@ -122,7 +122,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     @Override
     public void keyReleased(KeyEvent arg0) {
         // si suelto la tecla 39 o la 37 se asigna velocidad 0 a la paleta
-        if (arg0.getKeyCode() == CODIGO_TECLA_DERECHA || arg0.getKeyCode() == CODIGO_TECLA_IZQUIERDA) {
+        if (arg0.getKeyCode() == KeyEvent.VK_RIGHT || arg0.getKeyCode() == KeyEvent.VK_LEFT) {
             paleta.setVelocidadX(0);
         }
     }
