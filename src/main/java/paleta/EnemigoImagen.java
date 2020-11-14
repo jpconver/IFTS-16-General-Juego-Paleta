@@ -16,7 +16,7 @@ public class EnemigoImagen extends Enemigo {
     public EnemigoImagen(int posicionX, int posicionY, double velocidadX, double velocidadY, int ancho, int largo,
             Color color) {
         super(posicionX, posicionY, velocidadX, velocidadY, ancho, largo, color);
-        String path = Paths.get(Sonidos.class.getClassLoader().getResource("imagenes/android.png").getPath())
+        String path = Paths.get(EnemigoImagen.class.getClassLoader().getResource("imagenes/android.png").getPath())
                 .toString();
         try {
             this.img = ImageIO.read(new File(path));
