@@ -199,7 +199,7 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     // se hace una iteracion de todos los enemigos cargados en la lista de enemigos
     // y se le dice a cada uno que ejecute el metodo moverse().
     // moverse() actualiza la posicionX y posicionY del elemento en base a la
-    // direccion que tenia para X e Y
+    // direccion/velocidad que tenia para X e Y
     private void moverEnemigos() {
         for (Enemigo enemigo : enemigos) {
             enemigo.moverse();
@@ -289,8 +289,8 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     }
 
     // Se verifica si la pelota toca el piso, si es asi se pierde una vida, se crea
-    // una nueva pelota, se toca el sonido muerte y se muesra
-    // el mensaje perdiste una vida y se esperan 5 segundos
+    // una nueva pelota, se toca el sonido muerte y se muestra la pantalla perdiste
+    // y se esperan 5 segundos
     private void verificarSiPelotaTocaElPiso() {
         if (pelota.getPosicionY() + pelota.getLargo() >= largoJuego) {
             vidas.perderVida();
