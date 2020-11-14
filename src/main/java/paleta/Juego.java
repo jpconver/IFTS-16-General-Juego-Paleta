@@ -21,8 +21,6 @@ public class Juego extends JPanel implements KeyListener, Runnable {
     private final static int PANTALLA_JUEGO = 2;
     private final static int PANTALLA_PERDEDOR = 3;
     private final static int PANTALLA_GANADOR = 4;
-    private final static int CODIGO_TECLA_DERECHA = 39;
-    private final static int CODIGO_TECLA_IZQUIERDA = 37;
     private static final long serialVersionUID = 1L;
     private int anchoJuego;
     private int largoJuego;
@@ -106,15 +104,18 @@ public class Juego extends JPanel implements KeyListener, Runnable {
             pantallaActual = PANTALLA_INICIO;
         }
 
-        // si mantengo apretada la tecla de la derecha se asigna velocidad 1 a la paleta
-        if (arg0.getKeyCode() == CODIGO_TECLA_DERECHA) {
-            paleta.setVelocidadX(1);
-        }
+        if (pantallaActual == PANTALLA_JUEGO) {
 
-        // si mantengo apretada la tecla de la izquierda se asigna velocidad -1 a la
-        // paleta
-        if (arg0.getKeyCode() == CODIGO_TECLA_IZQUIERDA) {
-            paleta.setVelocidadX(-1);
+            // si mantengo apretada la tecla de la derecha se asigna velocidad 1 a la paleta
+            if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
+                paleta.setVelocidadX(1);
+            }
+
+            // si mantengo apretada la tecla de la izquierda se asigna velocidad -1 a la
+            // paleta
+            if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+                paleta.setVelocidadX(-1);
+            }
         }
     }
 
