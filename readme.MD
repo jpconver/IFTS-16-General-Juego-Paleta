@@ -3,5 +3,5 @@ Un simple juego para demostrar programación orientada a objetos en la clase de 
 
 ![Imagen del Juego](https://github.com/jpconver/juegoPaleta/blob/master/doc/juego.png)
 
-![Diagram de Clases](https://github.com/jpconver/juegoPaleta/blob/master/doc/diagramaClases.png)
+![Diagrama de Clases](https://github.com/jpconver/juegoPaleta/blob/master/doc/diagramaClases.png)
 
