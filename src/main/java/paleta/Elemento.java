@@ -1,7 +1,6 @@
 package paleta;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 public interface Elemento extends Dibujable {
 
@@ -18,8 +17,6 @@ public interface Elemento extends Dibujable {
     public double getVelocidadY();
 
     public Color getColor();
-
-    public void dibujarse(Graphics graphics);
 
     public void moverse();
 
