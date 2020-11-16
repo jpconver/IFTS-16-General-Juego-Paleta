@@ -1,7 +1,6 @@
 package paleta;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 public abstract class ElementoBasico implements Elemento {
 
@@ -22,8 +21,6 @@ public abstract class ElementoBasico implements Elemento {
         this.largo = largo;
         this.color = color;
     }
-
-    public abstract void dibujarse(Graphics graphics);
 
     public boolean hayColision(Elemento elemento) {
         if (Utilidades.hayColision(
